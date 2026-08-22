@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #02060d;
+}
+
+body {
+  overflow: hidden;
+  color: #eef8ff;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+button,
+canvas {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.demoShell {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 420px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 55% 43%, rgba(14, 52, 83, 0.24), transparent 28%),
+    radial-gradient(circle at 45% 56%, rgba(4, 28, 51, 0.18), transparent 46%),
+    linear-gradient(180deg, #02060d 0%, #030914 48%, #01040a 100%);
+}
+
+.demoShell::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.26;
+  background-image:
+    linear-gradient(rgba(77, 166, 226, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 166, 226, 0.015) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 74%);
+}
+
+.demoShell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background:
+    radial-gradient(circle at center, transparent 52%, rgba(0, 3, 8, 0.32) 78%, rgba(0, 2, 6, 0.72) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.10), transparent 18%, transparent 80%, rgba(0, 0, 0, 0.18));
+}
+
+.particleStage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  outline: none;
+  touch-action: none;
+  cursor: default;
+}
+
+.particleCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.webglFallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(42, 118, 171, 0.18), transparent 34%),
+    #02060d;
+}
+
+.webglFallback::before {
+  content: "";
+  width: min(58vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.42;
+  background: radial-gradient(circle, rgba(110, 199, 255, 0.22), transparent 66%);
+}
+
+.srOnly {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 720px) {
+  .demoShell::before {
+    background-size: 42px 42px;
+    opacity: 0.18;
+  }
+
+  .demoShell {
+    background:
+      radial-gradient(circle at 52% 46%, rgba(14, 52, 83, 0.26), transparent 34%),
+      linear-gradient(180deg, #02060d 0%, #030914 54%, #01040a 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demoShell::before {
+    opacity: 0.12;
+  }
+}
